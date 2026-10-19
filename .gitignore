@@ -1,0 +1,12 @@
+.env
+.venv/
+node_modules/
+dist/
+backend/cache/
+weather_data/*.epw
+out/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.log
+backend/tests/fixture.ifc

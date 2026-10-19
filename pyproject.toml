@@ -1,0 +1,22 @@
+[project]
+name = "microclimate-studio"
+version = "0.1.0"
+description = "Upload an IFC model, run Infrared City microclimate analyses, view results."
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+[tool.pytest.ini_options]
+testpaths = ["backend/tests"]
+filterwarnings = [
+    "default",
+    "ignore:Using `httpx` with `starlette.testclient` is deprecated",
+]
+pythonpath = ["backend"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = [".venv", "frontend", "out"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]

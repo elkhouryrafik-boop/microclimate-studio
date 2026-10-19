@@ -1,0 +1,255 @@
+/* ============================================================================
+   Microclimate Studio — global stylesheet
+   Neutral slate + teal token set. Fonts: Inter + JetBrains Mono (OFL, @fontsource).
+   Tailwind v4 with @theme inline bridging.
+   ========================================================================== */
+
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import 'tailwindcss';
+
+:root {
+  /* --- Neutral palette --- */
+  --slate-950: #0b1117;    /* deepest tone */
+  --slate-900: #111a24;   /* header gradient start */
+  --slate-800: #18232f;   /* header band */
+  --slate-700: #223140;   /* deep cards */
+  --slate-600: #2e4152;   /* deep panels */
+  --slate-500: #435b70;   /* structural slate */
+  --teal-800: #115e59;   /* deep accent */
+  --teal-700: #0f766e;   /* interactive accent (buttons, links) */
+  --teal-500: #14b8a6;   /* accent bright */
+  --slate-400: #94a3b8;  /* muted tint */
+  --teal-200: #99f6e4;  /* pale accent on dark */
+  --white: #ffffff;       /* canvas ground */
+
+  /* --- Derived tints --- */
+  --slate-100: #eef2f6;  /* tinted fills */
+  --slate-50: #f6f8fa;   /* faintest wash, zebra rows */
+  --slate-200: #dde3ea;       /* hairlines on light */
+  --ink: #0f172a;             /* body text — slate, not black */
+  --ink-muted: #475569;       /* secondary text */
+
+  /* --- Semantic tokens — luminous surface (default) --- */
+  --background: var(--white);
+  --foreground: var(--ink);
+  --card: var(--white);
+  --muted: var(--slate-50);
+  --muted-foreground: var(--ink-muted);
+  --primary: var(--teal-700);
+  --primary-foreground: var(--white);
+  --secondary: var(--slate-100);
+  --accent: var(--teal-800);
+  --border: var(--slate-200);
+  --ring: var(--teal-500);
+  --destructive: #b3261e;
+  --success: #1e6e42;
+  --warning: #8a5a00;
+
+  /* --- Semantic tokens — deep surface (header, results hero) --- */
+  --deep-bg: var(--slate-800);
+  --deep-fg: var(--white);
+  --deep-card: var(--slate-700);
+  --deep-muted-fg: #a7b3c2;
+  --deep-primary: var(--teal-200);
+  --deep-border: rgba(153, 246, 228, 0.28);
+
+  /* --- Type scale --- */
+  --text-hero: clamp(2.75rem, 1.6rem + 5vw, 5.5rem);
+  --text-h1: clamp(2.25rem, 1.5rem + 3vw, 3.75rem);
+  --text-h2: clamp(1.75rem, 1.3rem + 1.8vw, 2.5rem);
+  --text-h3: 1.5rem;
+  --text-h4: 1.25rem;
+  --text-lead: 1.125rem;
+  --text-body: 1.0625rem;
+  --text-ui: 0.9375rem;
+  --text-meta: 0.8125rem;
+  --text-micro: 0.6875rem;
+  --text-stat: clamp(3rem, 2rem + 4.5vw, 6rem);
+
+  /* --- Motion --- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --dur-slow: 400ms;
+}
+
+/* @theme inline — bridge CSS custom properties into Tailwind utilities.
+   `inline` keeps the var() references so tokens stay single-sourced. */
+@theme inline {
+  --color-slate-950: var(--slate-950);
+  --color-slate-900: var(--slate-900);
+  --color-slate-800: var(--slate-800);
+  --color-slate-700: var(--slate-700);
+  --color-slate-600: var(--slate-600);
+  --color-slate-500: var(--slate-500);
+  --color-teal-800: var(--teal-800);
+  --color-slate-200: var(--slate-200);
+  --color-teal-700: var(--teal-700);
+  --color-teal-500: var(--teal-500);
+  --color-slate-400: var(--slate-400);
+  --color-slate-100: var(--slate-100);
+  --color-slate-50: var(--slate-50);
+  --color-teal-200: var(--teal-200);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+
+  --font-display: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+@layer base {
+  html {
+    background: var(--background);
+    color: var(--foreground);
+  }
+
+  body {
+    font-family: var(--font-body), sans-serif;
+    font-size: var(--text-body);
+    line-height: 1.6;
+    /* All numerals: tabular */
+    font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: var(--slate-800);
+    color: var(--white);
+  }
+
+  /* Focus ring — never strip */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+/* --- Skeleton bars (loading — never spinners) --- */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  background: var(--slate-100);
+}
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* --- Indeterminate run progress (Run button) --- */
+.run-track {
+  position: relative;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 1px;
+  background: var(--slate-200);
+}
+.run-track > span {
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  background: var(--teal-700);
+  animation: indeterminate 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes indeterminate {
+  0% {
+    left: -40%;
+  }
+  100% {
+    left: 110%;
+  }
+}
+
+/* --- Parameter sliders (mono engineering controls) --- */
+.range-input {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--slate-200);
+  cursor: pointer;
+}
+.range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--teal-700);
+  border: 2px solid var(--white);
+  box-shadow: 0 0 0 1px var(--slate-200);
+  transition: box-shadow var(--dur-fast) var(--ease-out);
+}
+.range-input::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--teal-700) 22%, transparent);
+}
+.range-input::-moz-range-thumb {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--teal-700);
+  border: 2px solid var(--white);
+  box-shadow: 0 0 0 1px var(--slate-200);
+}
+.range-input:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--teal-700) 30%, transparent);
+}
+
+/* --- Thin scrollbars for the rails --- */
+.rail-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--slate-200) transparent;
+}
+.rail-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.rail-scroll::-webkit-scrollbar-thumb {
+  background: var(--slate-200);
+  border-radius: 4px;
+}
+.rail-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* --- Calm motion: reduced-motion collapses everything to instant --- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

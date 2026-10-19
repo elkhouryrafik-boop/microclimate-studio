@@ -1,0 +1,13 @@
+# 0.5.0 changed WindModelRequest.wind_speed from int to float and fixed the
+# VDI criterion string, both of which dispatch.py relies on.
+infrared-sdk>=0.5.1,<0.6
+ifcopenshell
+fastapi>=0.110
+uvicorn[standard]
+python-dotenv
+pydantic>=2
+numpy
+python-multipart
+pyyaml          # weather_manifest.yaml
+pillow          # heatmap PNG rendering
+shapely         # storey footprint unions (also an infrared-sdk dependency)
